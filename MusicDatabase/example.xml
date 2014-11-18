@@ -1,0 +1,39 @@
+<request type="GET |SET| DELETE">
+	<artist>
+		arer
+	</artist>
+	<album>
+		qweqwe
+	</album>
+	<title>
+		serhgser
+	</title>
+	<genre>
+		saegfas
+	</genre>
+<request>
+
+<response>
+	<track>
+		<title>
+			qwe
+		<title>
+		<artists>
+			<artist>
+				qwreqwr
+			</artist>
+		<artists>
+		<albums>
+			<album>
+				qwersdfgs
+			</album>
+			...
+			<album>
+				qwersdfgs
+			</album>
+		</albums>
+		<length>
+			123
+		</length>
+	</track>
+</response>
