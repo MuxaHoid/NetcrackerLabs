@@ -7,8 +7,8 @@
     <session-factory>
         <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
         <property name="connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
-        <property name="connection.username">flashcards</property>
-        <property name="connection.password">12543</property>
+        <property name="connection.username">musicdatabase</property>
+        <property name="connection.password">12345</property>
 
         <property name="connection.pool_size">1</property>
         <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
@@ -19,9 +19,9 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
 
-        <mapping resource="Flashcard.hbm.xml"/>
-        <mapping resource="Dictionary.hbm.xml"/>
-        <mapping resource="User.hbm.xml"/>
-        <mapping resource="Result.hbm.xml"/>
+        <mapping class="com.netcracker.training.musicdatabase.model.Album"/>
+        <mapping class="com.netcracker.training.musicdatabase.model.Artist"/>
+        <mapping class="com.netcracker.training.musicdatabase.model.Track"/>
+        <mapping class="com.netcracker.training.musicdatabase.model.Genre"/>
     </session-factory>
 </hibernate-configuration>

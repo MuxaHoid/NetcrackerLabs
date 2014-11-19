@@ -16,9 +16,11 @@
             <groupId>MusicDatabase</groupId>
             <artifactId>model</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.6.Final</version>
+        </dependency>
     </dependencies>
-
-
-
 
 </project>

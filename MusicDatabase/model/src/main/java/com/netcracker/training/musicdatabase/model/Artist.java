@@ -1,3 +1,5 @@
+package com.netcracker.training.musicdatabase.model;
+
 /**
  * Created by MuxaHoid on 13.11.2014.
  */
@@ -20,4 +22,5 @@ public class Artist {
     public void setName(String name) {
         this.name = name;
     }
+
 }

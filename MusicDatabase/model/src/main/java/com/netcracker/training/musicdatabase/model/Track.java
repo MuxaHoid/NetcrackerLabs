@@ -1,4 +1,9 @@
-import java.util.List;
+package com.netcracker.training.musicdatabase.model;
+
+import com.netcracker.training.musicdatabase.model.Album;
+import com.netcracker.training.musicdatabase.model.Artist;
+
+import java.util.Set;
 
 /**
  * Created by MuxaHoid on 13.11.2014.
@@ -6,7 +11,7 @@ import java.util.List;
 public class Track {
     Long id;
     Artist artist;
-    List<Album> albums;
+    Set<Album> albums;
     Genre genre;
     String title;
     int length;
@@ -27,11 +32,11 @@ public class Track {
         this.artist = artist;
     }
 
-    public List<Album> getAlbums() {
+    public Set<Album> getAlbums() {
         return albums;
     }
 
-    public void setAlbums(List<Album> albums) {
+    public void setAlbums(Set<Album> albums) {
         this.albums = albums;
     }
 

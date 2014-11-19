@@ -1,3 +1,7 @@
+package com.netckracker.training.musicdatabase.db;
+
+import com.netcracker.training.musicdatabase.model.*;
+
 import java.util.List;
 
 /**
