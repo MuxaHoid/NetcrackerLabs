@@ -1,4 +1,7 @@
 <request type="GET |SET| DELETE">
+    <id>
+        1
+    </id>
 	<artist>
 		arer
 	</artist>
@@ -15,6 +18,9 @@
 
 <response>
 	<track>
+        <id>
+            1
+        </id>
 		<title>
 			qwe
 		<title>
@@ -32,6 +38,9 @@
 				qwersdfgs
 			</album>
 		</albums>
+        <genre>
+            qerfa
+        </genre>
 		<length>
 			123
 		</length>

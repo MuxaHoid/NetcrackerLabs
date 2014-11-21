@@ -3,12 +3,29 @@ package com.netcracker.training.musicdatabase.model;
 /**
  * Created by MuxaHoid on 19.11.2014.
  */
+
+import javax.persistence.*;
+
 /**
  * Created by MuxaHoid on 13.11.2014.
  */
+@Entity
+@Table(name="Genre")
 public class Genre {
-    Long id;
-    String name;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="genre_id")
+    private Long id;
+    @Column(name = "genre_name")
+    private String name;
+
+    public Genre(String name) {
+        this.name = name;
+    }
+
+    public Genre(){
+
+    }
 
     public String getName() {
         return name;

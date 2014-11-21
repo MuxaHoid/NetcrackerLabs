@@ -1,7 +1,6 @@
 package com.netcracker.training.musicdatabase.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by MuxaHoid on 13.11.2014.
@@ -11,8 +10,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Album")
 public class Album {
-    Long id;
-    String title;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="album_id")
+    private Long id;
+
+    @Column(name="album_title")
+    private String title;
+
+    public Album(String title) {
+        this.title = title;
+    }
+
+    public Album(){
+
+    }
 
     public Long getId() {
         return id;
@@ -28,5 +40,10 @@ public class Album {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.getTitle().equals(((Album)obj).getTitle());
     }
 }

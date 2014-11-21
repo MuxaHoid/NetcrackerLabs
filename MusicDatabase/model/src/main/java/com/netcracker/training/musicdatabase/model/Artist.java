@@ -1,11 +1,27 @@
 package com.netcracker.training.musicdatabase.model;
 
+import javax.persistence.*;
+
 /**
  * Created by MuxaHoid on 13.11.2014.
  */
+@Entity
+@Table(name="Artist")
 public class Artist {
-    Long id;
-    String name;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="artist_id")
+    private Long id;
+    @Column(name="artist_name")
+    private String name;
+
+    public Artist(String name) {
+        this.name = name;
+    }
+
+    public Artist(){
+
+    }
 
     public Long getId() {
         return id;
