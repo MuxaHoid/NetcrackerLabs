@@ -46,4 +46,9 @@ public class Album {
     public boolean equals(Object obj) {
         return this.getTitle().equals(((Album)obj).getTitle());
     }
+
+    @Override
+    public int hashCode() {
+        return title.hashCode();
+    }
 }

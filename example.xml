@@ -30,13 +30,7 @@
 			</artist>
 		<artists>
 		<albums>
-			<album>
-				qwersdfgs
-			</album>
-			...
-			<album>
-				qwersdfgs
-			</album>
+            alb1, aln2
 		</albums>
         <genre>
             qerfa

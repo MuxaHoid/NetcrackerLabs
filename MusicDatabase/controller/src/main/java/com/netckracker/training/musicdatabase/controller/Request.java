@@ -11,5 +11,5 @@ public class Request {
     @XmlAttribute
     String type;
     @XmlElement
-    Track tracks;
+    ResultTrack tracks;
 }

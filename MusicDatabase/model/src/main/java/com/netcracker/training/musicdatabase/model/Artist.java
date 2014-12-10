@@ -39,4 +39,13 @@ public class Artist {
         this.name = name;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return this.getName().equals(((Artist)obj).getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }

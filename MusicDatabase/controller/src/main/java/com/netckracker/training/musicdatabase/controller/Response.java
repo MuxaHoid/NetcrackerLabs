@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Response {
     @XmlElement
-    Track[] tracks;
+    ResultTrack[] tracks;
 }
-class Track{
+class ResultTrack {
     @XmlElement
     String id;
     @XmlElement
@@ -23,5 +23,5 @@ class Track{
     @XmlElement
     String genre;
     @XmlElement
-    String length;
+    String time;
 }

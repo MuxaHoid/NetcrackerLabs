@@ -18,17 +18,17 @@ public class Track {
     @Column(name="track_id")
     private Long id;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "track_in_album", joinColumns = {
             @JoinColumn(name = "track_id") },
             inverseJoinColumns = { @JoinColumn(name = "album_id")})
     private Set<Album> albums = new HashSet<Album>();
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
