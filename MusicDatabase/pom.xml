@@ -12,7 +12,8 @@
         <module>model</module>
         <module>db</module>
         <module>controller</module>
-        <module>view</module>
+        <module>web</module>
+        <module>service</module>
     </modules>
 
 
