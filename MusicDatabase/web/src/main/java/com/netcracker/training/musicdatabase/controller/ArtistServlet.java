@@ -3,6 +3,7 @@ package com.netcracker.training.musicdatabase.controller;
 import com.netcracker.training.musicdatabase.service.Service;
 import com.netcracker.training.musicdatabase.service.ServiceImpl;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,8 @@ import java.io.IOException;
  */
 @WebServlet(name = "ArtistServlet", urlPatterns = {"/artist"})
 public class ArtistServlet extends HttpServlet{
+    @EJB
+    private Service service;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -26,7 +29,6 @@ public class ArtistServlet extends HttpServlet{
                 response.sendRedirect("parctrl.jsp?type=artist&id=" + request.getParameter("artist"));
             else response.sendRedirect(request.getHeader("referer"));
         } else if (action.equals("delete")) {
-            Service service = new ServiceImpl();
             String[] params = request.getParameter("artist").split(";");
             if (params.length > 0)
                 service.removeArtist(Long.parseLong(params[0]));

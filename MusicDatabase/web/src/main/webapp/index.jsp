@@ -1,10 +1,16 @@
 <html>
 <body>
 <h2>Music Database</h2>
-<a href="album.jsp">Albums</a>
+<form action="/login" method="post">
+    Username:
+    <input type="text" name="username">
+    <br>
+    Password:
+    <input type="password" name="password">
+    <br>
+    <input type="submit" value="Log In">
+</form>
 <br>
-<a href="track.jsp">Tracks</a>
-<br>
-<a href="artist.jsp">Artists</a>
+<a href="register.jsp">New user?</a>
 </body>
 </html>

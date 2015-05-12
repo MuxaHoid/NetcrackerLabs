@@ -4,11 +4,13 @@ import com.netcracker.training.musicdatabase.model.Album;
 import com.netcracker.training.musicdatabase.model.Artist;
 import com.netcracker.training.musicdatabase.model.Track;
 
+import javax.ejb.Remote;
 import java.util.List;
 
 /**
  * Created by MuxaHoid on 5/6/2015.
  */
+@Remote
 public interface Service {
     List<Track> getTracks();
 

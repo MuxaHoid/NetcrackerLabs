@@ -17,4 +17,13 @@ public interface AudioLibraryDAO {
 
     void removeTrack(Long trackId);
 
+    User getUser(Long userID);
+    User getUserByName(String name);
+
+    void addUser(User user);
+
+    void updateUser(User user);
+
+    void removeUser(Long userID);
+
 }

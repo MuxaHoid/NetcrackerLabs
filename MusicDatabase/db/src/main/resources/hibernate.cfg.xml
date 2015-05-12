@@ -22,5 +22,6 @@
         <mapping class="com.netcracker.training.musicdatabase.model.Artist"/>
         <mapping class="com.netcracker.training.musicdatabase.model.Track"/>
         <mapping class="com.netcracker.training.musicdatabase.model.Genre"/>
+        <mapping class="com.netcracker.training.musicdatabase.model.User"/>
     </session-factory>
 </hibernate-configuration>

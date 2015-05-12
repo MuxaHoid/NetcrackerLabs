@@ -5,11 +5,13 @@ import com.netcracker.training.musicdatabase.model.Album;
 import com.netcracker.training.musicdatabase.model.Artist;
 import com.netcracker.training.musicdatabase.model.Track;
 
+import javax.ejb.Stateless;
 import java.util.List;
 
 /**
  * Created by MuxaHoid on 5/6/2015.
  */
+@Stateless
 public class ServiceImpl implements Service {
     AudioLibraryDAOImpl dao;
 
@@ -17,32 +19,26 @@ public class ServiceImpl implements Service {
         dao = new AudioLibraryDAOImpl();
     }
 
-    @Override
     public List<Track> getTracks() {
         return dao.getTracks("", "", "", "");
     }
 
-    @Override
     public Track getTrackByID(Long id) {
         return dao.getTrackByID(id);
     }
 
-    @Override
     public List<Track> getTracksByAlbum(Long id) {
         return dao.getTrackByAlbum(id);
     }
 
-    @Override
     public List<Track> getTracksByArtist(Long id) {
         return dao.getTrackByArtist(id);
     }
 
-    @Override
     public List<Track> getTracksByGenre() {
         return null;
     }
 
-    @Override
     public List<Track> getTracksWithParameters() {
         return null;
     }
@@ -59,12 +55,10 @@ public class ServiceImpl implements Service {
         dao.removeAlbum(id);
     }
 
-    @Override
     public List<Artist> getArtists() {
         return dao.getArtistsByName("");
     }
 
-    @Override
     public List<Album> getAlbums() {
         return dao.getAlbumsByTitle("");
     }
@@ -73,17 +67,14 @@ public class ServiceImpl implements Service {
         return dao.getAlbumByID(id);
     }
 
-    @Override
     public List<Album> getAlbumsByArtist() {
         return null;
     }
 
-    @Override
     public List<Album> getAlbumsWithParameters() {
         return null;
     }
 
-    @Override
     public Artist getArtistByName(String name) {
         return dao.getArtistByName(name);
     }
@@ -92,7 +83,6 @@ public class ServiceImpl implements Service {
         return dao.getArtistByID(id);
     }
 
-    @Override
     public void addTrack(String title, String albums, String artist, String genre, String length) {
         Track newTrack = new Track();
         newTrack.setTitle(title);
@@ -106,19 +96,16 @@ public class ServiceImpl implements Service {
         dao.addTrack(newTrack, newAlbums);
     }
 
-    @Override
     public void addAlbum(String title) {
         Album a = new Album(title);
         dao.addAlbum(a);
     }
 
-    @Override
     public void addArtist(String name) {
         Artist a = new Artist(name);
         dao.addArtist(a);
     }
 
-    @Override
     public void editTrack(String id, String title, String albums, String artist, String genre, String length) {
         Track newTrack = getTrackByID(Long.parseLong("id"));
         newTrack.setTitle(title);
@@ -129,14 +116,12 @@ public class ServiceImpl implements Service {
         dao.updateTrack(newTrack, newAlbums);
     }
 
-    @Override
     public void editAlbum(String id, String title) {
         Album a = dao.getAlbumByID(Long.parseLong(id));
         a.setTitle(title);
         dao.updateAlbum(a);
     }
 
-    @Override
     public void editArtist(String id, String name) {
         Artist a = dao.getArtistByID(Long.parseLong(id));
         a.setName(name);
