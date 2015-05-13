@@ -97,4 +97,13 @@ public class Track {
     public void setLength(int length) {
         this.length = length;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.getId()==((Track)obj).getId();
+    }
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

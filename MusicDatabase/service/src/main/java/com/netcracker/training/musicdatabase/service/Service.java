@@ -3,6 +3,7 @@ package com.netcracker.training.musicdatabase.service;
 import com.netcracker.training.musicdatabase.model.Album;
 import com.netcracker.training.musicdatabase.model.Artist;
 import com.netcracker.training.musicdatabase.model.Track;
+import com.netcracker.training.musicdatabase.model.User;
 
 import javax.ejb.Remote;
 import java.util.List;
@@ -55,4 +56,8 @@ public interface Service {
     void editAlbum(String id, String title);
 
     void editArtist(String id, String name);
+
+    User getUserByName(String username);
+
+    void updateUser(User user);
 }
