@@ -4,6 +4,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.netcracker.training.musicdatabase.model.Album" %>
 <%@ page import="java.util.Set" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
 <%--
   Created by IntelliJ IDEA.
   User: MuxaHoid
@@ -20,7 +22,7 @@
 
 </head>
 <body>
-<a href="index.jsp">Return to main page</a>
+<a href="library.jsp">Return to main page</a>
 <br>
 
 <form action="/track" method="post">
@@ -41,7 +43,8 @@
         </thead>
         <tbody>
             <%
-					 Service service = new ServiceImpl();
+					 Context context = new InitialContext();
+                     Service service = (Service) context.lookup(Service.class.getName());
 					 List<Track> list;
 					 if(request.getParameterMap().containsKey("album")){
 					 list = service.getTracksByAlbum(Long.parseLong(request.getParameter("album")));

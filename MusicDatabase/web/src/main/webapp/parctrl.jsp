@@ -4,6 +4,8 @@
 <%@ page import="com.netcracker.training.musicdatabase.model.Track" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="com.netcracker.training.musicdatabase.model.Artist" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
 <%--
   Created by IntelliJ IDEA.
   User: MuxaHoid
@@ -20,7 +22,8 @@
 <h1>Parameters</h1>
 <form action="/parctrl" method="post">
     <%
-        Service service = new ServiceImpl();
+        Context context = new InitialContext();
+        Service service = (Service) context.lookup(Service.class.getName());
         String type = request.getParameter("type");
         if (type.equals("album")) {
     %>

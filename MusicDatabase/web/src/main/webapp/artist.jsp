@@ -2,6 +2,8 @@
 <%@ page import="com.netcracker.training.musicdatabase.model.Artist" %>
 <%@ page import="com.netcracker.training.musicdatabase.service.ServiceImpl" %>
 <%@ page import="java.util.List" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
 <%--
   Created by IntelliJ IDEA.
   User: MuxaHoid
@@ -15,7 +17,7 @@
     <title>Artists</title>
 </head>
 <body>
-<a href="index.jsp">Return to main page</a>
+<a href="library.jsp">Return to main page</a>
 
 <form action="/artist" method="post">
     <input type="submit" name="action" value="add">
@@ -31,7 +33,8 @@
         </thead>
         <tbody>
             <%
-					 Service service = new ServiceImpl();
+					 Context context = new InitialContext();
+                     Service service = (Service) context.lookup(Service.class.getName());
 					 List<Artist> list = service.getArtists();
 					 for (Artist a : list) {
 				 %>

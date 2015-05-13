@@ -4,6 +4,7 @@ import com.netcracker.training.musicdatabase.model.Track;
 import com.netcracker.training.musicdatabase.service.Service;
 import com.netcracker.training.musicdatabase.service.ServiceImpl;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,10 +17,11 @@ import java.io.IOException;
  */
 @WebServlet(name = "ParctrlServlet", urlPatterns = {"/parctrl"})
 public class ParctrlServlet extends HttpServlet {
+    @EJB
+    private Service service;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Service service = new ServiceImpl();
         if (request.getParameterMap().containsKey("track")) {
             if (request.getParameter("track").equals("Edit")) {
                 service.editTrack(request.getParameter("id"),

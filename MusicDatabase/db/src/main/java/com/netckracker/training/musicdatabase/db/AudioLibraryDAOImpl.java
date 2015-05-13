@@ -1,9 +1,6 @@
 package com.netckracker.training.musicdatabase.db;
 
-import com.netcracker.training.musicdatabase.model.Album;
-import com.netcracker.training.musicdatabase.model.Artist;
-import com.netcracker.training.musicdatabase.model.Genre;
-import com.netcracker.training.musicdatabase.model.Track;
+import com.netcracker.training.musicdatabase.model.*;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
@@ -16,7 +13,6 @@ import java.util.List;
 public class AudioLibraryDAOImpl implements AudioLibraryDAO {
 
 
-    @Override
     public List<Track> getTracks(String title, String artist, String album, String genre) {
         List<Track> tracks = new ArrayList<Track>();
         ;
@@ -62,7 +58,6 @@ public class AudioLibraryDAOImpl implements AudioLibraryDAO {
         return tracks;
     }
 
-    @Override
     public void updateTrack(Track track, String[] albums) {
         Session session = null;
         List<Album> newAlbums = new ArrayList<Album>();
@@ -88,7 +83,6 @@ public class AudioLibraryDAOImpl implements AudioLibraryDAO {
         }
     }
 
-    @Override
     public void addTrack(Track track, String[] albums) {
         Session session = null;
         List<Album> newAlbums = new ArrayList<Album>();
@@ -114,7 +108,6 @@ public class AudioLibraryDAOImpl implements AudioLibraryDAO {
         }
     }
 
-    @Override
     public void removeTrack(Long trackId) {
         Session session = null;
         try {
@@ -122,6 +115,95 @@ public class AudioLibraryDAOImpl implements AudioLibraryDAO {
             session.beginTransaction();
             Track track = (Track) session.get(Track.class, trackId);
             session.delete(track);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
+    public User getUser(Long userID) {
+        User result = null;
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            result = (User) session.get(User.class, userID);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return result;
+    }
+
+    public User getUserByName(String name) {
+        Session session = null;
+        User user = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            List<User> results = session
+                    .createQuery("from User a where a.name in :username")
+                    .setParameter("username", name)
+                    .list();
+            if (!results.isEmpty())
+                user = results.get(0);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+                return user;
+            }
+        }
+        return user;
+    }
+
+    public void addUser(User user) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.save(user);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
+    public void updateUser(User user) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.update(user);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
+    public void removeUser(Long userID) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            User user = (User) session.get(User.class, userID);
+            session.delete(user);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -265,7 +347,7 @@ public class AudioLibraryDAOImpl implements AudioLibraryDAO {
         return tracks;
     }
 
-    public List<Track> getTrackByArtist(Long id){
+    public List<Track> getTrackByArtist(Long id) {
         List<Track> tracks = new ArrayList<Track>();
         Session session = null;
         try {
