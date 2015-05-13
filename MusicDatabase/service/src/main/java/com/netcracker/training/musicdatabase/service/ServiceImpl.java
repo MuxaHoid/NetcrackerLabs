@@ -4,6 +4,7 @@ import com.netckracker.training.musicdatabase.db.AudioLibraryDAOImpl;
 import com.netcracker.training.musicdatabase.model.Album;
 import com.netcracker.training.musicdatabase.model.Artist;
 import com.netcracker.training.musicdatabase.model.Track;
+import com.netcracker.training.musicdatabase.model.User;
 
 import javax.ejb.Stateless;
 import java.util.List;
@@ -128,5 +129,12 @@ public class ServiceImpl implements Service {
         dao.updateArtist(a);
     }
 
+    public User getUserByName(String username){
+        return dao.getUserByName(username);
+    }
+
+    public void updateUser(User user) {
+        dao.updateUser(user);
+    }
 
 }

@@ -6,6 +6,7 @@
 <%@ page import="java.util.Set" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.Context" %>
+<%@ page import="com.netcracker.training.musicdatabase.model.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: MuxaHoid
@@ -17,14 +18,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 <html>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <head>
     <title>Tracks</title>
-
 </head>
 <body>
+<script>
+    function rate(element) {
+        var user = $('#user').val();
+        var track = $(element).attr('name');
+        var vote = $('input:radio[name=' + track + ']:checked').val();
+        $.post("/rate", { vote : vote , user : user ,track : track } );
+    }
+</script>
 <a href="library.jsp">Return to main page</a>
 <br>
-
 <form action="/track" method="post">
     <table>
         <input type="submit" name="action" value="add">
@@ -39,6 +47,7 @@
             <th>Albums</th>
             <th>Genre</th>
             <th>Length</th>
+            <th>Your rating</th>
         </tr>
         </thead>
         <tbody>
@@ -46,6 +55,7 @@
 					 Context context = new InitialContext();
                      Service service = (Service) context.lookup(Service.class.getName());
 					 List<Track> list;
+					 User currentUser = service.getUserByName(session.getAttribute("currentSessionUser").toString());
 					 if(request.getParameterMap().containsKey("album")){
 					 list = service.getTracksByAlbum(Long.parseLong(request.getParameter("album")));
 					 }else if(request.getParameterMap().containsKey("artist")){
@@ -73,6 +83,25 @@
             <td><%=t.getGenre().getName()%>
             </td>
             <td><%=t.getLength()%>
+            </td>
+            <td>
+                <form name="<%=t.getId()%>" id="<%=t.getId()%>">
+                    <input type =hidden value="<%=currentUser.getName()%>" id = "user">
+                    no:
+                    <input type="radio" value="0" name = "<%=t.getId()%>"
+                        <%if(!currentUser.getVotes().containsKey(t)){%>
+                           checked="checked"
+                    <%}%>
+                           onclick="rate(this)">
+                    <%for (int i = 1; i <= 5; i++) {
+                    out.print(i+":");%>
+                    <input type="radio" value="<%=i%>"
+                        <%if(currentUser.getVotes().containsKey(t)&&currentUser.getVotes().get(t)==i){%>
+                           checked="checked"
+                        <%}%>
+                           name="<%=t.getId()%>" onclick="rate(this)">
+                    <%}%>
+                </form>
             </td>
         </tr>
             <%}%>

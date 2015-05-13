@@ -1,5 +1,8 @@
 package com.netcracker.training.musicdatabase.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +24,7 @@ public class User {
     @Column(name="user_hash")
     private String hash;
     @ElementCollection
+    @LazyCollection(LazyCollectionOption.FALSE)
     @CollectionTable(name = "votes", joinColumns = {
             @JoinColumn(name = "user_id") })
     @MapKeyJoinColumn(name="track_id",referencedColumnName = "track_id")
